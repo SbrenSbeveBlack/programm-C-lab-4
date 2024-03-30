@@ -1,15 +1,40 @@
 #include <stdio.h>
-
+#include "triangle.h"
 int main() {
-    int a,b,c;
-    int calculatePerimeter(int a, int b, int c);
-    int calculateArea(int a, int b, int c);
-    scanf("%i %i %i", &a, &b, &c);
-    if (a + b > c && a + c > b && b + c > a){
-        int perimeter = calculatePerimeter(a,b,c);
-        int area = calculateArea(a,b,c);
+    double s1, s2, s3;
+    printf("Enter the sides of the triangle\n");
+    scanf("%lf %lf %lf", &s1, &s2, &s3);
+    if (istriangle(s1,s2,s3) == true){
+        double perimeter = Perimeter(s1,s2,s3);
+        double area = Area(s1,s2,s3);
+        printf("Perimeter: %lf\n", perimeter);
+        printf("Area: %lf\n", area);
     }
     else {
-        printf("Некорректный треугольник")
+        printf("NET TAKOGO TREUGOLNIKA");
     }
+
+    return 0;
+}
+
+#include <math.h>
+#include <stdbool.h>
+double Perimeter(double s1,double s2,double s3) {
+    return s1+s2+s3;
+}
+double Area(double s1,double s2,double s3) {
+    double p,area;
+    p = (s1+s2+s3)/2;
+    area = sqrt(p*(p-s1)*(p-s2)*(p-s3));
+    return area;
+    
+}
+bool istriangle(double s1, double s2, double s3){
+    if (s1 + s2 > s3 && s1 + s3 > s2 && s2 + s3 > s1) {
+        return true;
+    }
+    else{
+        return false;
+    }
+    
 }
